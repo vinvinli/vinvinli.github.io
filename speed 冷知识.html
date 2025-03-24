@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>长隆极速学堂</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Short+Stack&display=swap');
+
+        body {
+            font-family: 'Short Stack', cursive;
+            background: #F8F9FA;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 3px solid #FFD1DC;
+        }
+
+        h1 {
+            color: #FF6B6B;
+            text-align: center;
+            font-size: 2.5em;
+            margin: 30px 0;
+            text-shadow: 2px 2px #FFE5E5;
+        }
+
+        h2 {
+            color: #4ECDC4;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+        }
+
+        .ride-image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 12px;
+            margin: 15px auto;
+            display: block;
+            border: 3px solid #FFD1DC;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        button {
+            background: #FFD1DC;
+            color: #555;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        button:hover {
+            background: #FFB3C6;
+            transform: translateX(10px);
+        }
+
+        .feedback {
+            font-size: 1.4em;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .correct {
+            color: #4ECDC4;
+            display: block !important;
+        }
+
+        .fact-tip {
+            background: #E8F8F5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .scissors {
+            font-size: 1.5em;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🐾 长隆速度大挑战 🎢</h1>
+
+    <div id="game-container">
+        <!-- 题目1 -->
+        <div class="question-card">
+            <h2>1. 火箭过山车的最高时速能达到？</h2>
+            <img src="./乐园设施_长隆欢乐世界官方网站_广州长隆度假区_files/405a9baf90a8ff6d.jpg" class="ride-image" alt="火箭过山车">
+            <div class="options">
+                <button onclick="showAnswer(1, 'B')">A. 小汽车速度 (80km/h)</button>
+                <button onclick="showAnswer(1, 'B')">B. 高铁速度 (120km/h)</button>
+                <button onclick="showAnswer(1, 'B')">C. 猎豹速度 (100km/h)</button>
+                <button onclick="showAnswer(1, 'B')">D. 飞机起飞速度 (140km/h)</button>
+            </div>
+            <div id="feedback1" class="feedback"></div>
+            <div id="fact1" class="fact-tip">
+                📌 冷知识：这个速度相当于1秒穿越33米，比眨眼速度还快！
+            </div>
+        </div>
+
+        <!-- 题目2 -->
+        <div class="question-card">
+            <h2>2. 垂直过山车全程体验时长？</h2>
+            <img src="./乐园设施_长隆欢乐世界官方网站_广州长隆度假区_files/chw-czgsc-790.e9d31ea.jpg" class="ride-image" alt="垂直过山车">
+            <div class="options">
+                <button onclick="showAnswer(2, 'C')">A. 喝杯奶茶的时间 (45秒)</button>
+                <button onclick="showAnswer(2, 'C')">B. 等电梯的时间 (1分10秒)</button>
+                <button onclick="showAnswer(2, 'C')">C. 煮泡面的时间 (1分30秒)</button>
+                <button onclick="showAnswer(2, 'C')">D. 洗热水澡的时间 (2分钟)</button>
+            </div>
+            <div id="feedback2" class="feedback"></div>
+            <div id="fact2" class="fact-tip">
+                📌 冷知识：在这90秒里，你的心跳会比平时加快2倍！
+            </div>
+        </div>
+
+        <!-- 题目3 -->
+        <div class="question-card">
+            <h2>3. 自由落体项目的下降速度？</h2>
+            <img src="./乐园设施_长隆欢乐世界官方网站_广州长隆度假区_files/d38462c87fedfce5.png" class="ride-image" alt="自由落体">
+            <div class="options">
+                <button onclick="showAnswer(3, 'A')">A. 暴风雨速度 (105km/h)</button>
+                <button onclick="showAnswer(3, 'A')">B. 自行车下坡 (85km/h)</button>
+                <button onclick="showAnswer(3, 'A')">C. 摩托车速度 (95km/h)</button>
+                <button onclick="showAnswer(3, 'A')">D. 滑雪冠军速度 (115km/h)</button>
+            </div>
+            <div id="feedback3" class="feedback"></div>
+            <div id="fact3" class="fact-tip">
+                📌 冷知识：这个下坠速度能让你3秒内下降10层楼！
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showAnswer(questionNum, correctKey) {
+            const feedback = document.getElementById(`feedback${questionNum}`);
+            const fact = document.getElementById(`fact${questionNum}`);
+            const buttons = document.querySelectorAll(`#game-container div:nth-child(${questionNum}) button`);
+
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                if(btn.innerText.includes(correctKey)) {
+                    btn.style.background = '#C7F5E6';
+                    btn.style.color = '#2D796F';
+                } else {
+                    btn.style.background = '#FFE5E5';
+                }
+            });
+
+            feedback.innerHTML = `✅ 正确！答案 ${correctKey} ✂️`;
+            feedback.className = "feedback correct";
+            fact.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
